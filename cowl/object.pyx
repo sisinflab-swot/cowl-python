@@ -38,9 +38,15 @@ cdef class Object:
 
     def __str__(self) -> str:
         """Return the string representation of the object"""
+        #print(f"dentro __str__")
+        #if self.c_obj == NULL:
+        #    raise ValueError("Valore non inizializzato, impossibile stampare")
         cdef CowlString* str_rep = cowl_to_string(self.c_obj)
+        #print(f"str_rep ok")
         cdef UString *str_rep_str = cowl_string_get_raw(str_rep)
+        #print(f"str_rep_str ok")
         result = ustring_to_pystr(str_rep_str)
+        #print(f"result ok: {result}")
         return result
 
     def __repr__(self) -> str:
@@ -57,8 +63,8 @@ cdef class Object:
     def __hash__(self) -> int:
         """Return the integer has of a cowl object"""
         return cowl_hash(self.c_obj)
-    
-    # The following methods simply wrap the C functions in the object 
+
+    # The following methods simply wrap the C functions in the object
 
     def get_type(self) -> int:
         return cowl_get_type(self.c_obj)
@@ -89,25 +95,25 @@ cdef class Object:
 
     def is_reserved(self) -> bool:
         return cowl_is_reserved(self.c_obj)
-    
+
     # IRI is a little bit trickier, since not every object is IRI-identifiable
     # Also, i want the python string version of an IRI
     # So a little bit of conversion and error checking is needed
 
     def get_namespace(self) -> str:
-        cdef CowlIRI* iri = cowl_get_iri(self.c_obj)
+        cdef const CowlIRI* iri = cowl_get_iri(self.c_obj)
         if iri == NULL:
             raise ValueError("Cannot ask for namespace of a non-IRI object")
-        cdef CowlString *ns = cowl_iri_get_ns(iri)
-        cdef UString *ns_str = cowl_string_get_raw(ns)
+        cdef const CowlString *ns = cowl_iri_get_ns(iri)
+        cdef const UString *ns_str = cowl_string_get_raw(ns)
         return ustring_to_pystr(ns_str)
 
     def get_remainder(self) -> str:
-        cdef CowlIRI* iri = cowl_get_iri(self.c_obj) 
+        cdef const CowlIRI* iri = cowl_get_iri(self.c_obj)
         if iri == NULL:
             raise ValueError("Cannot ask for reminder of a non-IRI object")
-        cdef CowlString *rem  = cowl_iri_get_rem(iri)
-        cdef UString *rem_str = cowl_string_get_raw(rem)        
+        cdef const CowlString *rem  = cowl_iri_get_rem(iri)
+        cdef const UString *rem_str = cowl_string_get_raw(rem)
         return ustring_to_pystr(rem_str)
 
     def get_iri(self) -> str:

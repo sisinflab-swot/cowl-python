@@ -167,6 +167,33 @@ SubClassOf(:O2b :O2)
 
 SubClassOf(:O2c :O2)
 
+############################
+#   Object Property Assertions
+############################
+
+# :i1 ha una relazione r1 con :i2
+ObjectPropertyAssertion(:r1 :i1 :i2)
+
+# :i2 ha una relazione r2 con :i3
+ObjectPropertyAssertion(:r2 :i2 :i3)
+
+# :i3 ha una relazione r3 con :i1
+ObjectPropertyAssertion(:r3 :i3 :i1)
+
+
+############################
+#   Data Property Assertions
+############################
+
+# :i1 ha un valore intero per d1
+DataPropertyAssertion(:d1 :i1 "5"^^xsd:integer)
+
+# :i2 ha un valore stringa per d2
+DataPropertyAssertion(:d2 :i2 "active"^^xsd:string)
+
+# :i3 ha un valore numerico per d3
+DataPropertyAssertion(:d3 :i3 "42"^^xsd:integer)
+
 
 ############################
 #   Named Individuals

@@ -5,7 +5,7 @@ cdef UString pystr_to_ustring(pystr):
     cdef UString str = ustring_copy(pystr.encode('utf-8'), len(pystr))
     return str
 
-cdef ustring_to_pystr(UString *str):
+cdef ustring_to_pystr(const UString *str):
     """Convert a ustring to a python string"""
     pystr = ustring_data(str[0]).decode('utf-8')[:ustring_length(str[0])]
     return pystr

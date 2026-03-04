@@ -28,3 +28,6 @@ cdef extern from "cowl_string.h":
     #cowl_ret cowl_string_to_float(CowlString* string, ulib_float* out)
     #CowlString* cowl_string_opt(UString string, int opts)
     #char* cowl_string_release_copying_cstring(CowlString* string)
+
+cdef class String:
+    cdef CowlString* c_obj

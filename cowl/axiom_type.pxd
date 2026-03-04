@@ -42,4 +42,3 @@ cdef extern from "cowl_axiom_type.h":
         COWL_AT_ANNOT_PROP_RANGE
         COWL_AT_COUNT
         COWL_AT_FIRST
-

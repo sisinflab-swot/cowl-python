@@ -11,4 +11,6 @@ cdef extern from "cowl_any.h":
     ctypedef void CowlAnyIndividual
     ctypedef void CowlAnyPrimitive
     ctypedef void CowlAnyObjPropExp
+    ctypedef void CowlAnySubClsAxiom
+    ctypedef void CowlAnyDataProp
 

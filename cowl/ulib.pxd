@@ -25,5 +25,5 @@ cdef extern from "ulib.h":
 
 """Methods for converting a string between python and UString"""
 cdef UString pystr_to_ustring(pystr)
-cdef ustring_to_pystr(UString *str)
+cdef ustring_to_pystr(const UString *str)
 

@@ -20,4 +20,3 @@ cdef extern from "cowl_primitive_flags.h":
 
     CowlPrimitiveFlags cowl_primitive_flags_from_type(CowlPrimitiveType type)
     bint cowl_primitive_flags_has_type(CowlPrimitiveFlags flags, CowlPrimitiveType type)
-

@@ -165,8 +165,10 @@ cowl/**/*.c
 cowl/**/*.dll
 cowl/**/*.so
 cowl/**/*.dylib
+cowl/**/*.lib
 
 cowl/*.dll
 cowl/*.so
 cowl/*.dylib
+cowl/*.lib
 cowl.compiled

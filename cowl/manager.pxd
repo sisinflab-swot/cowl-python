@@ -34,7 +34,7 @@ cdef extern from "cowl.h":
     #CowlIStream *cowl_manager_get_istream(CowlManager *manager, CowlIStreamHandlers handlers)
     #CowlIStream *cowl_manager_get_istream_to_ontology(CowlManager *manager, CowlOntology *ontology)
     #CowlOStream *cowl_manager_get_ostream(CowlManager *manager, UOStream *stream)
-
+    CowlOntology *cowl_manager_new_ontology(CowlManager *manager)
 
 cdef class Ontology(Object):
     pass

@@ -4,20 +4,19 @@ Also forward the required functions from cowl.h
 """
 
 from cowl.ulib cimport UString
-from cowl.iri cimport CowlIRI
 from cowl.any cimport CowlAny
 from cowl.string cimport CowlString
 from cowl.vector cimport CowlVector
-from cowl.iterator cimport CowlIterator
-from cowl.primitive_flags cimport CowlPrimitiveFlags
 from cowl.object_type cimport CowlObjectType
-from cowl.ret cimport cowl_ret
-
+from cowl.error_handler cimport CowlErrorHandler, ErrorHandler
 from libc.stdint cimport uintptr_t
 
 cdef extern from "cowl.h":
 
     ctypedef struct CowlObject:
+        pass
+
+    ctypedef struct CowlIRI:
         pass
 
     void cowl_init()
@@ -42,13 +41,14 @@ cdef extern from "cowl.h":
     bint cowl_equals_iri_string(CowlAny* object, UString iri_str)
     bint cowl_is_reserved(CowlAny* object)
     uintptr_t cowl_hash(CowlAny* object)
+    void cowl_set_error_handler(CowlErrorHandler handler)
     #bint cowl_iterate_primitives(CowlAny* object, CowlPrimitiveFlags flags, CowlIterator* iter)
 
+cdef ErrorHandler global_handler
 
 cpdef inline pycowl_init():
     cowl_init()
+    cowl_set_error_handler(global_handler.eh)
 
 cdef class Object:
     cdef CowlAny* c_obj
-    cdef bint c_obj_owned
-

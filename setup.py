@@ -19,7 +19,7 @@ BINARY_DIR = COWL_LIB_DIRECTORY / "build"
 COMPILED_FLAG = THIS_DIRECTORY / "cowl.compiled"
 
 # Cowl config
-BUILD_TYPE='Release'
+BUILD_TYPE='Debug'
 COWL_LTO='OFF'
 COWL_LIBRARY_TYPE='SHARED'
 COWL_ENTITY_IDS='ON'
@@ -42,13 +42,13 @@ if sys.platform == "darwin":
 elif sys.platform == "win32":
 
     COWL_OBJECTS = [
-        os.path.join(BINARY_DIR, 'Release', 'cowl.lib'),
-        os.path.join(BINARY_DIR, 'lib', 'ulib', 'Release', 'ulib.lib')
+        os.path.join(BINARY_DIR, BUILD_TYPE, 'cowl.lib'),
+        os.path.join(BINARY_DIR, 'lib', 'ulib', BUILD_TYPE, 'ulib.lib')
     ]
 
     EXTRA_OBJECTS = [
-        os.path.join(BINARY_DIR, 'Release', 'cowl.dll'),
-        os.path.join(BINARY_DIR, 'lib', 'ulib', 'Release', 'ulib.dll')
+        os.path.join(BINARY_DIR, BUILD_TYPE, 'cowl.dll'),
+        os.path.join(BINARY_DIR, 'lib', 'ulib', BUILD_TYPE, 'ulib.dll')
     ]
 
     PLATFORM_CONFIG_ARGS = ['-A', 'x64']

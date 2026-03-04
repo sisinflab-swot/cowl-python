@@ -1,7 +1,7 @@
 """Forward delcaration"""
 
-# from cowl.string cimport CowlString
-# from cowl.ulib cimport UString
+from cowl.string cimport CowlString
+from cowl.ulib cimport UString
 
 cdef extern from "cowl_ret.h":
 
@@ -17,9 +17,9 @@ cdef extern from "cowl_ret.h":
         COWL_RET_FIRST
 
     # Function declarations
-    # cowl_ret cowl_ret_from_ustream(ustream_ret ret)
+    #cowl_ret cowl_ret_from_ustream(ustream_ret ret)
     # cowl_ret cowl_ret_from_uvec(uvec_ret ret)
     # cowl_ret cowl_ret_from_uhash(uhash_ret ret)
-    # UString cowl_ret_to_ustring(cowl_ret ret)
-    # CowlString* cowl_ret_to_string(cowl_ret ret)
+    UString cowl_ret_to_ustring(cowl_ret ret)
+    CowlString* cowl_ret_to_string(cowl_ret ret)
 
