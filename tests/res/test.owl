@@ -1,0 +1,188 @@
+Prefix(:=<http://example.org/mafalda#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://example.org/mafalda>
+
+Declaration(Class(:C1))
+Declaration(Class(:C2))
+Declaration(Class(:I1))
+Declaration(Class(:I1a))
+Declaration(Class(:I1b))
+Declaration(Class(:I1c))
+Declaration(Class(:I2))
+Declaration(Class(:I2a))
+Declaration(Class(:I2b))
+Declaration(Class(:I2c))
+Declaration(Class(:Input))
+Declaration(Class(:O1))
+Declaration(Class(:O1a))
+Declaration(Class(:O1b))
+Declaration(Class(:O1c))
+Declaration(Class(:O2))
+Declaration(Class(:O2a))
+Declaration(Class(:O2b))
+Declaration(Class(:O2c))
+Declaration(Class(:Output))
+Declaration(ObjectProperty(:r1))
+Declaration(ObjectProperty(:r2))
+Declaration(ObjectProperty(:r3))
+Declaration(DataProperty(:d1))
+Declaration(DataProperty(:d2))
+Declaration(DataProperty(:d3))
+Declaration(NamedIndividual(:i1))
+Declaration(NamedIndividual(:i2))
+Declaration(NamedIndividual(:i3))
+Declaration(AnnotationProperty(:i1))
+Declaration(AnnotationProperty(:i2))
+Declaration(AnnotationProperty(:input))
+Declaration(AnnotationProperty(:maxValue))
+Declaration(AnnotationProperty(:minValue))
+Declaration(AnnotationProperty(:o1))
+Declaration(AnnotationProperty(:o2))
+Declaration(AnnotationProperty(:output))
+Declaration(AnnotationProperty(:rawValue))
+############################
+#   Annotation Properties
+############################
+
+# Annotation Property: :i1 (:i1)
+
+SubAnnotationPropertyOf(:i1 :input)
+AnnotationPropertyRange(:i1 :I1)
+
+# Annotation Property: :i2 (:i2)
+
+SubAnnotationPropertyOf(:i2 :input)
+AnnotationPropertyRange(:i2 :I2)
+
+# Annotation Property: :maxValue (:maxValue)
+
+SubAnnotationPropertyOf(:maxValue :rawValue)
+
+# Annotation Property: :minValue (:minValue)
+
+SubAnnotationPropertyOf(:minValue :rawValue)
+
+# Annotation Property: :o1 (:o1)
+
+SubAnnotationPropertyOf(:o1 :output)
+AnnotationPropertyRange(:o1 :O1)
+
+# Annotation Property: :o2 (:o2)
+
+SubAnnotationPropertyOf(:o2 :output)
+AnnotationPropertyRange(:o2 :O2)
+
+
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :C1 (:C1)
+
+EquivalentClasses(:C1 ObjectIntersectionOf(:I1 :O2a ObjectMinCardinality(20 :r1)))
+
+# Class: :C2 (:C2)
+
+EquivalentClasses(:C2 ObjectIntersectionOf(:I2 ObjectComplementOf(:O2a) ObjectAllValuesFrom(:r3 :I2a) ObjectMinCardinality(20 :r1) ObjectMinCardinality(30 :r2) ObjectMinCardinality(40 :r3) ObjectMaxCardinality(20 :r1) ObjectMaxCardinality(30 :r2) ObjectMaxCardinality(40 :r3) DataAllValuesFrom(:d3 xsd:integer) DataMinCardinality(10 :d1) DataMaxCardinality(10 :d2)))
+SubClassOf(:C2 :I1)
+
+# Class: :I1 (:I1)
+
+SubClassOf(:I1 :Input)
+
+# Class: :I1a (:I1a)
+
+AnnotationAssertion(:maxValue :I1a "3"^^xsd:integer)
+SubClassOf(:I1a :I1)
+
+# Class: :I1b (:I1b)
+
+AnnotationAssertion(:maxValue :I1b "7"^^xsd:integer)
+AnnotationAssertion(:minValue :I1b "3"^^xsd:integer)
+SubClassOf(:I1b :I1)
+
+# Class: :I1c (:I1c)
+
+AnnotationAssertion(:minValue :I1c "7"^^xsd:integer)
+SubClassOf(:I1c :I1)
+
+# Class: :I2 (:I2)
+
+SubClassOf(:I2 :Input)
+
+# Class: :I2a (:I2a)
+
+AnnotationAssertion(:maxValue :I2a "3"^^xsd:integer)
+SubClassOf(:I2a :I2)
+
+# Class: :I2b (:I2b)
+
+AnnotationAssertion(:maxValue :I2b "7"^^xsd:integer)
+AnnotationAssertion(:minValue :I2b "3"^^xsd:integer)
+SubClassOf(:I2b :I2)
+
+# Class: :I2c (:I2c)
+
+AnnotationAssertion(:minValue :I2c "7"^^xsd:integer)
+SubClassOf(:I2c :I2)
+
+# Class: :O1 (:O1)
+
+SubClassOf(:O1 :Output)
+
+# Class: :O1a (:O1a)
+
+SubClassOf(:O1a :O1)
+
+# Class: :O1b (:O1b)
+
+SubClassOf(:O1b :O1)
+
+# Class: :O1c (:O1c)
+
+SubClassOf(:O1c :O1)
+
+# Class: :O2 (:O2)
+
+SubClassOf(:O2 :Output)
+
+# Class: :O2a (:O2a)
+
+SubClassOf(:O2a :O2)
+
+# Class: :O2b (:O2b)
+
+SubClassOf(:O2b :O2)
+
+# Class: :O2c (:O2c)
+
+SubClassOf(:O2c :O2)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: :i1 (:i1)
+
+ClassAssertion(:I1 :i1)
+
+# Individual: :i2 (:i2)
+
+ClassAssertion(ObjectIntersectionOf(ObjectMinCardinality(10 :r1) ObjectMinCardinality(20 :r2 :I1)) :i2)
+
+# Individual: :i3 (:i3)
+
+ClassAssertion(ObjectIntersectionOf(:O2a ObjectComplementOf(:O2b)) :i3)
+
+
+)
